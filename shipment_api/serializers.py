@@ -5,4 +5,10 @@ from .models import Shipment
 class ShipmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Shipment
+        fields = ('shop_name',)
+
+
+class ShipmentDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Shipment
         fields = '__all__'

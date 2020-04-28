@@ -11,7 +11,7 @@ class ShipmentListView(generics.ListAPIView):
 
 class ShipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Shipment.objects.all()
-    serializer_class = serializers.ShipmentSerializer
+    serializer_class = serializers.ShipmentDetailSerializer
 
     def retrieve(self, request, *args, **kwargs):
         super(ShipmentDetailView, self).retrieve(request, args, kwargs)
@@ -21,4 +21,16 @@ class ShipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
         response = {"status_code": status.HTTP_200_OK,
                     "message": "Successfully retrieved",
                     "result": data}
+        return Response(response)
+
+
+class ShipmentRefreshView(generics.CreateAPIView):
+    queryset = Shipment.objects.all()
+    serializer_class = serializers.ShipmentSerializer
+
+    def create(self, request, *args, **kwargs):
+        super(ShipmentRefreshView, self).create(request, args, kwargs)
+        response = {"status_code": status.HTTP_200_OK,
+                    "message": "Successfully created",
+                    "result": request.data}
         return Response(response)
