@@ -24,8 +24,6 @@ class SellerRegisterSerializer(RegisterSerializer):
     bol_client_secret = serializers.CharField()
 
     def get_cleaned_data(self):
-        super(SellerRegisterSerializer, self).get_cleaned_data()
-
         return {
             'username': self.validated_data.get('username', ''),
             'password1': self.validated_data.get('password1', ''),
@@ -36,3 +34,9 @@ class SellerRegisterSerializer(RegisterSerializer):
             'bol_client_id': self.validated_data.get('bol_client_id', ''),
             'bol_client_secret': self.validated_data.get('bol_client_secret', '')
         }
+
+    def custom_signup(self, request, user):
+        user.shop_name = self.cleaned_data['shop_name']
+        user.bol_client_id = self.cleaned_data['bol_client_id']
+        user.bol_client_secret = self.cleaned_data['bol_client_secret']
+        user.save()
