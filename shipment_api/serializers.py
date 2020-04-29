@@ -1,11 +1,8 @@
 from rest_framework import serializers
 from .models import Shipment
-from user_api.serializers import UserSerializer
 
 
 class ShipmentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = Shipment
         fields = '__all__'
