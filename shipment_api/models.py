@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
@@ -14,3 +15,15 @@ class Shipment(models.Model):
 
     def __str__(self):
         return self.id
+
+
+class Seller(AbstractUser):
+    shop_name = models.TextField(
+        blank=True, null=True, default=None, max_length=96)
+    bol_client_id = models.TextField(
+        blank=True, null=True, default=None, max_length=96)
+    bol_client_secret = models.TextField(
+        blank=True, null=True, default=None, max_length=96)
+
+    def __str__(self):
+        return self.email
