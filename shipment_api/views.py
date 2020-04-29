@@ -1,10 +1,15 @@
 from .models import Shipment
 from . import serializers
-from rest_framework import generics, status
+from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
 
 
-class ShipmentListView(generics.ListAPIView):
+# class ShipmentListView(generics.ListAPIView):
+#     queryset = Shipment.objects.all()
+#     serializer_class = serializers.ShipmentSerializer
+
+
+class ShipmentListView(viewsets.ModelViewSet):
     queryset = Shipment.objects.all()
     serializer_class = serializers.ShipmentSerializer
 
