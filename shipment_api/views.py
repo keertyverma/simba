@@ -1,9 +1,10 @@
-from .models import Shipment
-from . import serializers
+from django.contrib.auth import get_user_model
 from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from . import serializers
+from .models import Shipment
 
 
 class ShipmentListView(generics.ListAPIView):
@@ -56,3 +57,27 @@ class ShipmentRefreshView(generics.CreateAPIView):
                     "message": "Successfully created",
                     "result": request.data}
         return Response(response)
+
+
+class SellerDetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Reads, deletes and updates UserModel fields
+    Accepts GET, PUT, PATCH, DELETE methods.
+    Default accepted fields: username, first_name, last_name
+    Default display fields: pk, username, email, first_name, last_name
+    Read-only fields: pk, email
+    Returns UserModel fields.
+    """
+    serializer_class = serializers.SellerDetailsSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self):
+        return self.request.user
+
+    def get_queryset(self):
+        """
+        Adding this method since it is sometimes called when using
+        django-rest-swagger
+        https://github.com/Tivix/django-rest-auth/issues/275
+        """
+        return get_user_model().objects.none()
