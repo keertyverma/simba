@@ -38,15 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
     'rest_framework.authtoken',
-
-    'dj_rest_auth',
     'allauth',
     'allauth.account',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
-
     'shipment_api'
 ]
 
@@ -54,6 +51,9 @@ SITE_ID = 1
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'shipment_api.serializers.SellerRegisterSerializer'
+}
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'shipment_api.serializers.SellerDetailsSerializer',
 }
 AUTH_USER_MODEL = 'shipment_api.Seller'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
@@ -91,6 +91,10 @@ TEMPLATES = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
     'PAGE_SIZE': 5
 }
 

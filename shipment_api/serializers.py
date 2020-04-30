@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from dj_rest_auth.registration.serializers import RegisterSerializer
+from dj_rest_auth.serializers import UserDetailsSerializer
 from .models import Shipment, Seller
 
 
@@ -40,3 +41,11 @@ class SellerRegisterSerializer(RegisterSerializer):
         user.bol_client_id = self.cleaned_data['bol_client_id']
         user.bol_client_secret = self.cleaned_data['bol_client_secret']
         user.save()
+
+
+class SellerDetailsSerializer(UserDetailsSerializer):
+    class Meta(UserDetailsSerializer.Meta):
+        model = Seller
+        fields = ('pk', 'username', 'email',
+                  'first_name', 'last_name', 'shop_name', 'bol_client_id', 'bol_client_secret')
+        read_only_fields = ('email', )

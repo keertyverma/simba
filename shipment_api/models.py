@@ -14,7 +14,7 @@ class Shipment(models.Model):
     billing_details_surname = models.TextField(default=None)
 
     def __str__(self):
-        return self.id
+        return self.shop_client_id
 
 
 class Seller(AbstractUser):
