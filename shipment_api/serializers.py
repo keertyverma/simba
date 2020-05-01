@@ -46,6 +46,6 @@ class SellerRegisterSerializer(RegisterSerializer):
 class SellerDetailsSerializer(UserDetailsSerializer):
     class Meta(UserDetailsSerializer.Meta):
         model = Seller
-        fields = ('pk', 'username', 'email',
+        fields = ('username', 'email',
                   'first_name', 'last_name', 'shop_name', 'bol_client_id', 'bol_client_secret')
         read_only_fields = ('email', 'username')
