@@ -21,7 +21,7 @@ class BolBaseAPI(BaseAPI):
             response = requests.get(url, params=params, headers=headers)
 
             if response.status_code == 429:
-                print('Sleeping...%s' % str(response.headers))
+                print('Sleeping...')
                 time.sleep(int(response.headers['retry-after']))
 
                 response = requests.get(url, params=params, headers=headers)
