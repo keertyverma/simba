@@ -1,6 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 import logging
 import copy
+import requests
 from celery import shared_task
 
 from .crawlers.bol.bol_shipment_list_api import BolShipmentListAPI
@@ -17,8 +18,13 @@ def trigger_shipment_import(shop_type, client_credentials):
     # if rate limit exceed then wait till its expiration periods is over
     # handle token generation : if expired then get new token and queue task again
     # if shipment date is greater then one exising in DB then only run import_shipment_by_ID task
+    response = requests.post(
+        'https://login.bol.com/token?grant_type=client_credentials', auth=(client_credentials['client_id'], client_credentials['client_secret']), headers={'Accept': 'application/json'})
+    print(response.json())
+    token = response.json()['access_token']
+
     payload = {
-        'token': '',
+        'token': token,
         'last_updated_at': None,
         'page': 1,
         'client_id': client_credentials['client_id']
