@@ -62,6 +62,8 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
+CELERY_BROKER_URL = 'amqp://my-rabbit:5672'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

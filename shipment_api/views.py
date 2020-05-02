@@ -5,6 +5,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from . import serializers
 from .models import Shipment
+from .tasks import trigger_shipment_import
 
 
 class ShipmentListView(generics.ListAPIView):
@@ -47,14 +48,23 @@ class ShipmentDetailView(generics.RetrieveUpdateDestroyAPIView):
         return Response(response)
 
 
-class ShipmentRefreshView(generics.CreateAPIView):
+class ShipmentDataRefreshView(generics.CreateAPIView):
     queryset = Shipment.objects.all()
-    serializer_class = serializers.ShipmentSerializer
+    serializer_class = serializers.ShipmentDataRefreshSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
-        super(ShipmentRefreshView, self).create(request, args, kwargs)
+        # call import_data celery task
+        trigger_shipment_import.delay("bol",
+                                      {"client_id": request.user.bol_client_id, "client_secret": request.user.bol_client_secret})
+
+        request.data['shop_client_id'] = request.user.bol_client_id
+        request.data['username'] = request.user.username
+
+        super(ShipmentDataRefreshView, self).create(request, args, kwargs)
         response = {"status_code": status.HTTP_200_OK,
-                    "message": "Successfully created",
+                    "message": "Successfully refreshed shipment data",
                     "result": request.data}
         return Response(response)
 
