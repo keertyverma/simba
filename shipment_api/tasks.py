@@ -18,7 +18,7 @@ def trigger_shipment_import(shop_type, client_credentials):
     # handle token generation : if expired then get new token and queue task again
     # if shipment date is greater then one exising in DB then only run import_shipment_by_ID task
     payload = {
-        'token': 'eyJraWQiOiJyc2EyIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2OWJkODNmMS0xMTcyLTRiMDItODIxYS1iNWEyYWY1YTMyZGEiLCJhenAiOiI2OWJkODNmMS0xMTcyLTRiMDItODIxYS1iNWEyYWY1YTMyZGEiLCJjbGllbnRuYW1lIjoiZGV2ZWxvcGVyLWhpcmUiLCJpc3MiOiJodHRwczpcL1wvbG9naW4uYm9sLmNvbSIsInNjb3BlcyI6IlJFVEFJTEVSIiwiZXhwIjoxNTg4NDQ2NDI2LCJpYXQiOjE1ODg0NDYxMjYsImFpZCI6IkNMTlRDOmJlMmI3MDE2LTczNDYtYzM2ZS1kMTM4LTc3NzA4MTczZjdiYyBTTFI6MTM2Mzg1OCIsImp0aSI6IjcxNzViMDU0LTdkY2YtNDUwMy04ZjIxLThkZDBmYzEyZTk4NyJ9.LYBXS13ME4fqZtitRa75Py5ojQuRhFW9YLKDlpWshvMUQPsAdwoVOUukeFZrQIMDZgPyf50YKVNnvwS8Mwh0VnIxQB5WkUfg9lHntyg_6gl3iEhhFn4P9mXO6v9pqXt4eq9I8rhmnYlUcJzXHjhfnr4StPtlshmcOTgD2vn3ZQFMCYOVmN-DeIhdYVljQ6dQSHYGFyjw_TnuwbX9EcSCGxzNwcj182lgE_Yw-eDVTyn6Yw9KyS-Pk02Ug3Wsb1cnyQuDrK84nMAajuVWjChmDrOVX6WQTmz0iPhI9eMYS15DCAKx6g6HiBiaTw1IBBxxc1ij56EUH_5O3vcVd4PCUg',
+        'token': '',
         'last_updated_at': None,
         'page': 1,
         'client_id': client_credentials['client_id']
