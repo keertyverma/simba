@@ -14,6 +14,9 @@ class BolShipmentListAPI(BolBaseAPI):
 
         call_shipment = []
         for shipment in shipments:
+            if payload['last_updated_at'] >= shipment['shipmentDate']:
+                break
+
             call_shipment.append({
                 "class_name": "BolShipmentAPI",
                 "payload": {
@@ -24,7 +27,7 @@ class BolShipmentListAPI(BolBaseAPI):
                 }
             })
 
-        if len(shipments) == 50:
+        if len(call_shipment) == 50:
             # next page
             payload["page"] += 1
             call_shipment.append({

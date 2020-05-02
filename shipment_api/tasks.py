@@ -20,12 +20,11 @@ def trigger_shipment_import(shop_type, client_credentials):
     # if shipment date is greater then one exising in DB then only run import_shipment_by_ID task
     response = requests.post(
         'https://login.bol.com/token?grant_type=client_credentials', auth=(client_credentials['client_id'], client_credentials['client_secret']), headers={'Accept': 'application/json'})
-    print(response.json())
     token = response.json()['access_token']
 
     payload = {
         'token': token,
-        'last_updated_at': None,
+        'last_updated_at': '2020-03-03T23:28:56+01:00',
         'page': 1,
         'client_id': client_credentials['client_id']
     }
