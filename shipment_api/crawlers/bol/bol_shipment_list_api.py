@@ -1,3 +1,10 @@
+"""
+Class used to crawl all shipment data from bol.com.
+* Setting url to get all shipment API
+* Getting shipments data from all pages
+* Creating list with shipment data to pass it as celery task
+
+"""
 from .bol_base_api import BolBaseAPI
 
 

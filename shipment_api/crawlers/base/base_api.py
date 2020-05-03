@@ -1,3 +1,7 @@
+"""
+Base Abstract class to crawl data from any host.
+
+"""
 
 from abc import ABC, abstractmethod
 

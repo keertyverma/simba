@@ -1,3 +1,7 @@
+"""
+Class-based views to handle shipment and seller API
+"""
+
 from django.contrib.auth import get_user_model
 from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
