@@ -24,7 +24,7 @@ def trigger_shipment_import(shop_type, client_credentials):
 
     payload = {
         'token': token,
-        'last_updated_at': '2020-03-03T23:28:56+01:00',
+        'last_updated_at': '',
         'page': 1,
         'client_id': client_credentials['client_id']
     }
