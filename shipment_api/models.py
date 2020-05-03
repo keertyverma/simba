@@ -14,6 +14,9 @@ class Shipment(models.Model):
     zip_code = models.TextField(default=None)
     country_code = models.TextField(default=None)
 
+    def get_shipment_details(self):
+        return 'Shipment ID = ' + self.shipment_id + ' and shipment data =  ' + self.shipment_date
+
     def __str__(self):
         return self.shop_client_id
 
