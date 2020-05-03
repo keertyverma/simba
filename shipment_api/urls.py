@@ -1,3 +1,7 @@
+"""
+API routing URL list
+"""
+
 from django.urls import path
 from . import views
 

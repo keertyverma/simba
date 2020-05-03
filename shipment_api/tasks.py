@@ -1,14 +1,14 @@
+"""
+Celery Tasks to handle pulling data from host and run the task in background without overloading server.
+"""
+
 from __future__ import absolute_import, unicode_literals
 import logging
 import copy
 import requests
 from celery import shared_task
-
 from .crawlers.bol.bol_shipment_list_api import BolShipmentListAPI
 from .crawlers.bol.bol_shipment_api import BolShipmentAPI
-
-
-logger = logging.getLogger(__name__)
 
 
 @shared_task

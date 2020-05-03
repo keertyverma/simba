@@ -1,3 +1,8 @@
+"""
+Django production settings for simba project.
+
+"""
+
 from .base import *
 import dj_database_url
 

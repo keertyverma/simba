@@ -1,3 +1,11 @@
+"""
+Class used to crawl data from bol.com.
+* Setting base URL
+* Getting Auth token
+* Handling Rate limiting
+* reusable method to call bol API
+
+"""
 import time
 import requests
 

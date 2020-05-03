@@ -1,3 +1,10 @@
+"""
+Class used to crawl specific shipment data from bol.com.
+* Setting url for single shipment API
+* Writing shipment data to DB
+
+"""
+
 from .bol_base_api import BolBaseAPI
 from ...models import Shipment
 

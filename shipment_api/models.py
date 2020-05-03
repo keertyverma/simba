@@ -1,7 +1,9 @@
+"""
+Models created to handle seller and shipments data
+"""
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-# Create your models here.
 
 
 class Shipment(models.Model):
