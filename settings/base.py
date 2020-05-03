@@ -72,7 +72,12 @@ ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
-CELERY_BROKER_URL = 'amqp://my-rabbit:5672'
+BROKER_URL = 'amqp://my-rabbit:5672'
+BROKER_POOL_LIMIT = 1
+BROKER_CONNECTION_MAX_RETRIES = None
+
+CELERY_TASK_SERIALIZER = "json"
+CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

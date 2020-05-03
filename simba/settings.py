@@ -37,32 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-    'shipment_api'
+    'django.contrib.staticfiles'
 ]
-
-SITE_ID = 1
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'shipment_api.serializers.SellerRegisterSerializer'
-}
-REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'shipment_api.serializers.SellerDetailsSerializer',
-}
-AUTH_USER_MODEL = 'shipment_api.Seller'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-
-CELERY_BROKER_URL = 'amqp://my-rabbit:5672'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,15 +68,6 @@ TEMPLATES = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-    'PAGE_SIZE': 5
-}
-
 WSGI_APPLICATION = 'simba.wsgi.application'
 
 
@@ -108,15 +75,9 @@ WSGI_APPLICATION = 'simba.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'sqlite': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': 'configs/sqldb.cnf',
-        }
     }
 }
 
