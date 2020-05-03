@@ -68,7 +68,7 @@ class ShipmentDataRefreshView(generics.CreateAPIView):
 
         super(ShipmentDataRefreshView, self).create(request, args, kwargs)
         response = {"status_code": status.HTTP_200_OK,
-                    "message": "Successfully refreshed shipment data",
+                    "message": "Successfully triggered shipment data refresh",
                     "result": request.data}
         return Response(response)
 
