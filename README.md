@@ -26,6 +26,7 @@ This project is designed in such a way that it can scale easily and doesn't bloc
 2. Start a MySQL instance. This can be done by running the [official Docker image of MySQL](https://hub.docker.com/_/mysql).
 
    ```bash
+   mkdir -p ~/dummy/mysql_8
    docker pull mysql:8.0.20
    docker run --name some-mysql -v ~/dummy/mysql_8:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:8.0.20
    ```
