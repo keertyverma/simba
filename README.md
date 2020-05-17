@@ -58,7 +58,13 @@ This project is designed in such a way that it can scale easily and doesn't bloc
    docker run -d -p 5672:5672 --hostname my-rabbit --name rabbit-mq rabbitmq:3
    ```
 
-6. Start the worker by running the following command
+6. Export environment variable so that Celery worker picks custom settings by running following commanf
+
+   ```bash
+   export DJANGO_SETTINGS_MODULE='settings.base'
+   ```
+
+7. Start the worker by running the following command
 
    ```bash
    celery worker -A simba -l info
@@ -66,7 +72,7 @@ This project is designed in such a way that it can scale easily and doesn't bloc
 
    This will start the instance and set the log level at `INFO`.
 
-7. Use the following [API Documentation, written with Postman](https://documenter.getpostman.com/view/5352730/SzmZe21E?version=latest). This will detail you about the API endpoints available. You need to replace `baseURL` in collection variable to `http://localhost:8000`.
+8. Use the following [API Documentation, written with Postman](https://documenter.getpostman.com/view/5352730/SzmZe21E?version=latest). This will detail you about the API endpoints available. You need to replace `baseURL` in collection variable to `http://localhost:8000`.
 
 ## Deployment
 
